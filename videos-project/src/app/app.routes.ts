@@ -12,5 +12,6 @@ export const routes: Routes = [
   { path: 'catalog', component: CatalogComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: ErrorPageComponent },
+  { path: '404', component: ErrorPageComponent },
+  { path: '**', redirectTo: '/404' },
 ];
