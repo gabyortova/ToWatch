@@ -1,6 +1,6 @@
 .nav-wrapper {
-    background-color: rgb(231, 8, 157);
-    color: rgb(255, 255, 255);
+    background-color: #FFC0CB;
+    color: #2B363D;
     display: flex;
     width: 100%;
     height: 35px;
@@ -10,15 +10,15 @@
   }
   
   .nav-btn {
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid #2B363D;
     border-radius: 8px;
     margin-left: 10px;
     padding: 5px 10px;
   }
   
   .nav-btn:hover {
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-    background-color: rgb(247, 203, 237);
+    border: 1px solid #2B363D;
+    color: #2B363D;
+    background-color: #fdfff5;
     cursor: pointer;
   }
