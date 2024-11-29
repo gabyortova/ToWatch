@@ -1,0 +1,15 @@
+.container {
+    padding: 10px;
+    background-color: white;
+    border: gray solid;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 800px;
+    height: 700px auto;
+    margin-top: 150px;
+    right: 50%;
+    box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }

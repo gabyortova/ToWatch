@@ -1,3 +1,4 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CatalogComponent } from './catalog/catalog.component';
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'catalog', component: CatalogComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: '**', component: ErrorPageComponent },
 ];
