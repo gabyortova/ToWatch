@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { Component } from '@angular/core';
@@ -9,4 +10,5 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
 ];
