@@ -5,9 +5,12 @@
   width: 100%;
   height: 30px;
   padding: 10px 0;
-  align-items: center;
-  justify-content: center;
+  justify-content: right;
   position: fixed;
   left: 0;
   bottom: 0;
+}
+
+.footer span {
+  padding-right: 15px;
 }
