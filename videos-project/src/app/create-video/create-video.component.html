@@ -1,54 +1,61 @@
 <form #form="ngForm" (ngSubmit)="addVideo(form)">
-    <div class="container">
-      <h1>Create video</h1>
-  
-      <label for="title"><b>Title:</b></label>
-      <input
-        type="text"
-        placeholder="Enter title"
-        name="title"
-        id="title"
-        ngModel
-        #inputTitle="ngModel"
-        required
-        minlength="5"
-      />
-  
-      <label><b>Video url:</b></label>
-      <input
-        type="text"
-        placeholder="Enter video url"
-        name="url"
-        id="url"
-        ngModel
-        #inputVideoUrl="ngModel"
-        required
-        minlength="10"
-      />
+  <div class="container">
+    <h1>Create video</h1>
 
-      <label><b>Description:</b></label>
-      <input
-        type="text"
-        placeholder="Enter description"
-        name="description"
-        id="description"
-        ngModel
-        #inputDescription="ngModel"
-        required
-        minlength="10"
-      />
+    <label for="title"><b>Title:</b></label>
+    <input
+      type="text"
+      placeholder="Enter title"
+      name="title"
+      id="title"
+      ngModel
+      #inputTitle="ngModel"
+      required
+      minlength="5"
+    />
 
-      <label><b>Image:</b></label>
-      <input
-        type="text"
-        placeholder="Enter image url"
-        name="img"
-        id="img"
-        ngModel
-        #inputImg="ngModel"
-        minlength="10"
-      />
-  
-      <button type="submit" class="cretebtn">Create</button>
-    </div>
-  </form>
+    <label><b>Video url:</b></label>
+    <input
+      type="text"
+      placeholder="Enter video url"
+      name="videoUrl"
+      id="videoUrl"
+      ngModel
+      #inputVideoUrl="ngModel"
+      required
+      minlength="10"
+    />
+
+    <label><b>Description:</b></label>
+    <input
+      type="text"
+      placeholder="Enter description"
+      name="description"
+      id="description"
+      ngModel
+      #inputDescription="ngModel"
+      required
+      minlength="10"
+    />
+
+    <label><b>Image:</b></label>
+    <input
+      type="text"
+      placeholder="Enter image url"
+      name="img"
+      id="img"
+      ngModel
+      #inputImg="ngModel"
+      minlength="10"
+    />
+
+    <button
+      
+      class="cretebtn"
+      [disabled]="form.invalid"
+      [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
+    >
+      Create
+    </button>
+  </div>
+</form>

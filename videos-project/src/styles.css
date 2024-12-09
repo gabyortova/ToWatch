@@ -1,6 +1,11 @@
 body {
-    margin: 0;
-    padding: 0px;
-    position: relative;
-    background-color: #FFF6FB;
+  font-family: Arial, sans-serif;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 100vh;
+  margin: 0;
+  padding: 0px;
+  position: relative;
+  background-color: #fff6fb;
 }

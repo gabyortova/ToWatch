@@ -1,1 +1,15 @@
-<h1>Wellcome to my site's catalog page!</h1>
+<div class="container">
+    @for( item of [1, 2, 3, 4, 5, 6]; track item;) {
+  <div class="card">
+    <img
+      src="https://imagekit.io/blog/content/images/size/w600/2024/03/Angular-Upload_oAUmAr9vN.jpg"
+      alt="Introduction to Angular"
+    />
+    <h2>Introduction to Angular</h2>
+    <p>A beginner's guide to Angular framework.</p>
+    <a href="https://example.com/videos/angular-intro" target="_blank"
+      >Watch Video</a
+    >
+  </div>
+}
+</div>
