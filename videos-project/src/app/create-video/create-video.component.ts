@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Component } from '@angular/core';
 import { ApiService } from './../api.service';
 import { FormsModule, NgForm } from '@angular/forms';

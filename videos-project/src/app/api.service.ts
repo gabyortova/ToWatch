@@ -1,6 +1,6 @@
-import { Video } from './types/video';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Video } from './types/video';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class ApiService {
     img: string
   ) {
     const payload = { title, videoUrl, description, img };
-    //TODO: fix api
+    //TODO: fix
     return this.http.post<Video>(`http://localhost:5000/api/videos`, payload);
   }
 }
