@@ -2,67 +2,46 @@
     box-sizing: border-box;
   }
   
-  .container {
-    padding: 10px;
-    background-color: white;
-    border: gray solid;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: 800px;
-    height: 700px auto;
-    margin-top: 50px;
-    right: 50%;
-    box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
-    text-align: center;
-  }
-  
   h1 {
     text-align: center;
   }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 80%;
+    
+.form-container {
+  padding: 20px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  margin-top: 50px;
+}
+
+.form-container.fields {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+  input {
+    color: #0F110C;
+    width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
-    background: #f1f1f1;
-    align-self: center;
+    background: #CECCCC;
     border-radius: 10px;
   }
   
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-    background-color: #ddd;
+  input:focus {
+    background: rgba(206, 204, 204, 0.7);
     outline: none;
   }
-  
-  .loginbtn {
-    background-color: #FFC0CB;
-    color: #2B363D;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width:60%;
-    align-self: center;
-    opacity: 0.9;
-    border-radius: 10px;
+
+  label {
+    padding-left: 10px;
   }
   
-  .loginbtn:hover {
-    opacity: 1;
-  }
-  
-  a {
-    color: #4D8EFF;
-  }
-  
-  .login {
+  .register {
     text-align: center;
     margin-top: 30px;
   }

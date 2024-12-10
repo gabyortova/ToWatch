@@ -1,11 +1,42 @@
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
+  flex-direction: column;
   height: 100vh;
   margin: 0;
   padding: 0px;
   position: relative;
-  background-color: #fff6fb;
+  background-color: #fdecef;
+}
+body,
+input {
+  font-size: 16px;
+}
+
+button {
+  background-color: #612940;
+  color: #fdecef;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #9d6381;
+}
+
+a {
+  color: #612940;
+}
+
+.form-container {
+  padding: 10px;
+  background-color: white;
+  border: #cecccc solid;
+  border-radius: 15px;
 }

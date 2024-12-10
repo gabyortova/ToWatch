@@ -10,6 +10,14 @@ import { RouterLink, Router } from '@angular/router';
   styleUrl: './navigation-bar.component.css',
 })
 export class NavigationBarComponent {
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
+
+  get username(): string {
+    return this.userService.user?.username || '';
+  }
+
   constructor(private userService: UserService, private router: Router) {}
 
   logout() {

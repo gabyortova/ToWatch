@@ -1,11 +1,11 @@
 <form #form="ngForm" (ngSubmit)="register(form)">
-  <div class="container">
+  <div class="form-container">
     <h1>Register</h1>
 
     <label for="username"><b>Username:</b></label>
     <input
       type="text"
-      placeholder="gaby06"
+      placeholder="your username"
       name="username"
       id="username"
       ngModel
@@ -16,7 +16,7 @@
     <label for="email"><b>Email:</b></label>
     <input
       type="text"
-      placeholder="gabi.ortova@gmail.com"
+      placeholder="your.mail@gmail.com"
       name="email"
       id="email"
       ngModel
@@ -49,7 +49,7 @@
       required
     />
 
-    <button class="registerbtn">Register</button>
+    <button [disabled]="form.invalid" class="registerbtn">Register</button>
   </div>
   <div class="login">
     <p>Already have an account? <a routerLink="/login">Login</a></p>

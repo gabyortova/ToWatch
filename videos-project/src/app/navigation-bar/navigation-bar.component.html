@@ -1,9 +1,36 @@
-<div class="nav-wrapper">
-  <div class="nav-btn" routerLink="/home">Home</div>
-  <div class="nav-btn" routerLink="/catalog">Catalog</div>
-  <div class="nav-btn" routerLink="/to-watch">To watch</div>
-  <div class="nav-btn" routerLink="/create-video">Create video</div>
-  <div class="nav-btn" routerLink="/register">Register</div>
-  <div class="nav-btn" routerLink="/login">Login</div>
-  <a class="nav-btn" (click)="logout()">Logout</a>
-</div>
+<header>
+  <a routerLink="/home"><img src="./img/logo.png" class="logo" /></a>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLink="/catalog">Catalog</a>
+      </li>
+      <li>
+        <a routerLink="/my-videos">My videos</a>
+      </li>
+      <li>
+        <a routerLink="/create-video">Create video</a>
+      </li>
+    </ul>
+  </nav>
+  <ul>
+    @if(isLoggedIn){
+    <li>
+      <a routerLink="/">Hello, {{ username }}!</a>
+    </li>
+    <li>
+      <a (click)="logout()">Logout</a>
+    </li>
+    } @else {
+    <li>
+      <a routerLink="/login">Login</a>
+    </li>
+    <li>
+      <a routerLink="/register">Register</a>
+    </li>
+    }
+  </ul>
+</header>

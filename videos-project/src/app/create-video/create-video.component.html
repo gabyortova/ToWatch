@@ -1,11 +1,10 @@
 <form #form="ngForm" (ngSubmit)="addVideo(form)">
-  <div class="container">
+  <div class="form-container">
     <h1>Create video</h1>
 
     <label for="title"><b>Title:</b></label>
     <input
       type="text"
-      placeholder="Enter title"
       name="title"
       id="title"
       ngModel
@@ -17,7 +16,6 @@
     <label><b>Video url:</b></label>
     <input
       type="text"
-      placeholder="Enter video url"
       name="videoUrl"
       id="videoUrl"
       ngModel
@@ -27,21 +25,19 @@
     />
 
     <label><b>Description:</b></label>
-    <input
-      type="text"
-      placeholder="Enter description"
+    <textarea
       name="description"
       id="description"
       ngModel
       #inputDescription="ngModel"
       required
       minlength="10"
-    />
+      rows="3"
+    ></textarea>
 
     <label><b>Image:</b></label>
     <input
       type="text"
-      placeholder="Enter image url"
       name="img"
       id="img"
       ngModel
@@ -49,13 +45,6 @@
       minlength="10"
     />
 
-    <button
-      
-      class="cretebtn"
-      [disabled]="form.invalid"
-      [style]="{ backgroundColor: form.invalid ? 'grey' : '#234465' }"
-    >
-      Create
-    </button>
+    <button [disabled]="form.invalid">Create</button>
   </div>
 </form>
