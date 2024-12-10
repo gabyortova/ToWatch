@@ -1,5 +1,5 @@
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 import { CreateVideoComponent } from './create-video/create-video.component';
 import { ToWatchComponent } from './to-watch/to-watch.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
