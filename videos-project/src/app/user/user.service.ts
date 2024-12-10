@@ -1,0 +1,61 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { UserForAuth } from './../types/user';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserService implements OnDestroy {
+  private user$$ = new BehaviorSubject<UserForAuth | null>(null);
+  private user$ = this.user$$.asObservable();
+
+  USER_KEY = '[user]';
+  user: UserForAuth | null = null;
+  userSubscription: Subscription | null = null;
+
+  get isLogged(): boolean {
+    return !!this.user;
+  }
+
+  constructor(private http: HttpClient) {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  register(
+    username: string,
+    email: string,
+    phone: string,
+    pass: string,
+    rePass: string
+  ) {
+    return this.http
+      .post<UserForAuth>('/api/register', {
+        username,
+        email,
+        phone,
+        pass,
+        rePass,
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  login(email: string, pass: string) {
+    return this.http
+      .post<UserForAuth>('/api/login', { email, pass })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  logout() {
+    return this.http
+      .post('/api/logout', {})
+      .pipe(tap((user) => this.user$$.next(null)));
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription?.unsubscribe();
+  }
+}

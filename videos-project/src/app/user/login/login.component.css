@@ -23,6 +23,7 @@
   }
   
   input[type="text"],
+  input[type="email"],
   input[type="password"] {
     width: 80%;
     padding: 15px;
@@ -40,7 +41,7 @@
     outline: none;
   }
   
-  .registerbtn {
+  .loginbtn {
     background-color: #FFC0CB;
     color: #2B363D;
     padding: 16px 20px;
@@ -53,7 +54,7 @@
     border-radius: 10px;
   }
   
-  .registerbtn:hover {
+  .loginbtn:hover {
     opacity: 1;
   }
   
@@ -61,7 +62,7 @@
     color: #4D8EFF;
   }
   
-  .register {
+  .login {
     text-align: center;
     margin-top: 30px;
   }
