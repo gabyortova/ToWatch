@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { UserForAuth } from './../types/user';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
@@ -28,31 +28,30 @@ export class UserService implements OnDestroy {
   register(
     username: string,
     email: string,
-    phone: string,
     pass: string,
     rePass: string
   ) {
     return this.http
-      .post<UserForAuth>('/api/register', {
-        username,
+      .post<UserForAuth>('http://localhost:5000/api/register', {
+        username, 
         email,
-        phone,
         pass,
         rePass,
       })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  login(email: string, pass: string) {
+  login(email: string, password: string) {
     return this.http
-      .post<UserForAuth>('/api/login', { email, pass })
+      .post<UserForAuth>('http://localhost:5000/api/login', { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
   logout() {
     return this.http
-      .post('/api/logout', {})
-      .pipe(tap((user) => this.user$$.next(null)));
+      .post('http://localhost:5000/api/logout', {})
+      .pipe(tap((user) => this.user$$.next(null))
+      );
   }
 
   ngOnDestroy(): void {

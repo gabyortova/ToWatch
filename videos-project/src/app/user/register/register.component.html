@@ -1,37 +1,57 @@
-<form action="">
+<form #form="ngForm" (ngSubmit)="register(form)">
   <div class="container">
     <h1>Register</h1>
+
+    <label for="username"><b>Username:</b></label>
+    <input
+      type="text"
+      placeholder="gaby06"
+      name="username"
+      id="username"
+      ngModel
+      #inputUsername="ngModel"
+      required
+    />
 
     <label for="email"><b>Email:</b></label>
     <input
       type="text"
-      placeholder="Enter Email"
+      placeholder="gabi.ortova@gmail.com"
       name="email"
       id="email"
+      ngModel
+      #inputEmail="ngModel"
       required
+      [appEmail]="domains"
     />
 
     <label for="pass"><b>Password:</b></label>
     <input
       type="password"
-      placeholder="Enter Password"
+      placeholder="*******"
       name="pass"
       id="pass"
+      ngModel
+      #inputPass="ngModel"
+      minlength="4"
       required
     />
 
-    <label for="pass-repeat"><b>Repeat password:</b></label>
+    <label for="rePass"><b>Repeat password:</b></label>
     <input
       type="password"
-      placeholder="Repeat Password"
-      name="pass-repeat"
-      id="pass-repeat"
+      placeholder="*******"
+      name="rePass"
+      id="rePass"
+      ngModel
+      #inputRePass="ngModel"
+      minlength="4"
       required
     />
 
-    <button type="submit" class="registerbtn">Register</button>
+    <button class="registerbtn">Register</button>
   </div>
   <div class="login">
-    <p>Already have an account? <a href="/login">Login</a></p>
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
   </div>
 </form>
