@@ -15,9 +15,9 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    img: {
+    imgUrl: {
       type: String,
-      required: false,
+      required: true,
     },
     userId: {
       type: ObjectId,

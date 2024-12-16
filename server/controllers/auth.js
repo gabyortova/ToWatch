@@ -12,13 +12,8 @@ const removePassword = (data) => {
 };
 
 function register(req, res, next) {
-  console.log(req.body);
-  console.log('******************');
   const { username, email, pass: password, rePass } = req.body;
-  console.log(`Passwords: ${password}`);
-  console.log({ username, email, password, rePass });
   
-
   return userModel
     .create({ username, email, password })
     .then((createdUser) => {

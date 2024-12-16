@@ -1,7 +1,7 @@
 <form #form="ngForm" (ngSubmit)="register(form)">
   <div class="form-container">
     <h1>Register</h1>
-
+    <div class="fields">
     <label for="username"><b>Username:</b></label>
     <input
       type="text"
@@ -48,7 +48,7 @@
       minlength="4"
       required
     />
-
+  </div>
     <button [disabled]="form.invalid" class="registerbtn">Register</button>
   </div>
   <div class="login">

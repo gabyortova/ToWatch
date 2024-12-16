@@ -1,0 +1,11 @@
+<div class="details-container">
+  <h1>Video Details</h1>
+  <p><strong>ID:</strong> {{ video._id }}</p>
+  <p><strong>Title:</strong> {{ video.title }}</p>
+  <p><strong>Description:</strong> {{ video.description }}</p>
+  <p><strong>videoUrl:</strong> {{ video.videoUrl }}</p>
+  <p><strong> imgUrl :</strong> {{ video.imgUrl }}</p>
+
+  <a routerLink="/edit/{{ video._id }}" class="back-btn">Edit</a>
+  <a routerLink="/" class="back-btn">Delete</a>
+</div>

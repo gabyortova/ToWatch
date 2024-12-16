@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const users = require('./users');
-const playlists = require('./playlists');
+// const playlists = require('./playlists');
 const videos = require('./videos');
 const likes = require('./likes');
 const test = require('./test');
@@ -11,7 +11,7 @@ router.post('/login', authController.login);
 router.post('/logout', authController.logout);
 
 router.use('/users', users);
-router.use('/collections', playlists); //themes
+// router.use('/collections', playlists); //themes
 router.use('/videos', videos); //posts
 router.use('/likes', likes);
 router.use('/test', test);

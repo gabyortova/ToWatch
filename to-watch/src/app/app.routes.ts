@@ -1,3 +1,5 @@
+import { EditFormComponent } from './edit-form/edit-form.component';
+import { DetailsComponent } from './details/details.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { CreateVideoComponent } from './create-video/create-video.component';
@@ -12,10 +14,31 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'catalog', component: CatalogComponent },
+  {
+    path: 'details',
+    children: [
+      { path: '', component: CatalogComponent },
+      {
+        path: ':videoId',
+        component: DetailsComponent,
+      },
+    ],
+  },
+  {
+    path: 'edit',
+    children: [
+      { path: '', component: EditFormComponent },
+      {
+        path: ':videoId',
+        component: EditFormComponent,
+      },
+    ],
+  },
   { path: 'my-videos', component: ToWatchComponent },
   { path: 'create-video', component: CreateVideoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'details', component: DetailsComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '**', redirectTo: '/404' },
 ];

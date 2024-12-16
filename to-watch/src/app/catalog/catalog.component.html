@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     @for( item of [1, 2, 3, 4, 5, 6]; track item;) {
   <div class="card">
     <img
@@ -12,4 +12,16 @@
     >
   </div>
 }
+</div> -->
+
+<div class="container">
+  @for( video of videos; track $index;) {
+  <div class="card">
+    <img src="{{ video.imgUrl }}" />
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+    <a href="{{ video.videoUrl }}" target="_blank">Watch Video</a>
+    <a href="/details/{{video._id}}">Details</a>
+  </div>
+  }
 </div>

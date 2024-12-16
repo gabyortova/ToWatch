@@ -1,9 +1,9 @@
 const authController = require('./auth');
-const playlistController = require('./playlistController');
+// const playlistController = require('./playlistController');
 const videoController = require('./videoController');
 
 module.exports = {
     authController,
-    playlistController,
+    // playlistController,
     videoController,
 }

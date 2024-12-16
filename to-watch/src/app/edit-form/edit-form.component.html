@@ -1,6 +1,6 @@
-<form #form="ngForm" (ngSubmit)="addVideo(form)">
+<form #form="ngForm" (ngSubmit)="updateVideo(form)">
   <div class="form-container">
-    <h1>Create video</h1>
+    <h1>Update video</h1>
     <div class="fields">
       <label for="title"><b>Title:</b></label>
       <input
@@ -45,6 +45,6 @@
         minlength="10"
       />
     </div>
-    <button [disabled]="form.invalid">Create</button>
+    <button [disabled]="form.invalid">Update</button>
   </div>
 </form>

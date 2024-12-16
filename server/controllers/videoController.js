@@ -1,19 +1,38 @@
 const { userModel, playlistModel, videoModel } = require('../models');
 
-function newVideo(text, userId, playlistId) {
-  return videoModel.create({ text, userId, playlistId }).then((video) => {
+function newVideo(text, userId) {
+  return videoModel.create({ text, userId }).then((video) => {
     return Promise.all([
-      userModel.updateOne(
-        { _id: userId },
-        { $push: { videos: video._id }, $addToSet: { playlists: playlistId } }
-      ),
-      playlistModel.findByIdAndUpdate(
-        { _id: playlistId },
-        { $push: { videos: video._id }, $addToSet: { subscribers: userId } },
-        { new: true }
-      ),
+      userModel.updateOne({ _id: userId }, { $push: { videos: video._id } }),
+      // playlistModel.findByIdAndUpdate(
+      //   { _id: playlistId },
+      //   { $push: { videos: video._id }, $addToSet: { subscribers: userId } },
+      //   { new: true }
+      // ),
     ]);
   });
+}
+
+function getVideo(req, res, next) {
+  const { videoId } = req.params;
+
+  videoModel
+    .findById(videoId)
+    .populate('userId') // Populate user details if needed
+    .then((video) => {
+      if (!video) {
+        // If no video is found, send a 404 response
+        return res.status(404).json({ message: 'Video not found' });
+      }
+
+      // Send the video details as the response
+      res.status(200).json(video);
+    })
+    .catch((err) => {
+      // Log the error and pass it to the error-handling middleware
+      console.error('Error fetching video:', err);
+      next(err);
+    });
 }
 
 function getLatestsVideos(req, res, next) {
@@ -23,41 +42,28 @@ function getLatestsVideos(req, res, next) {
     .find()
     .sort({ created_at: -1 })
     .limit(limit)
-    .populate('playlistId userId')
+    // .populate('playlistId userId')
     .then((videos) => {
       res.status(200).json(videos);
     })
     .catch(next);
 }
 
-// function createVideo(req, res, next) {
-//     const { playlistId } = req.params;
-//     const { _id: userId } = req.user;
-//     const { videoText } = req.body;
-
-//     newVideo(videoText, userId, playlistId)
-//         .then(([_, updatedPlaylist]) => res.status(200).json(updatedPlaylist))
-//         .catch(next);
-// }
-
 function createVideo(req, res, next) {
-  const { title, videoUrl, description, img } = req.body;
+  const { title, videoUrl, description, imgUrl } = req.body;
   console.log(
-    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, img: ${img}`
+    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, imgUrl: ${imgUrl}`
   );
-
-  console.log('creating');
 
   // const { _id: userId } = req.user;
 
   videoModel
-    .create({ title, videoUrl, description, img })
+    .create({ title, videoUrl, description, imgUrl })
     .then((video) => {
-      console.log(`then video: ${video}`);
       return res.status(200).json(video);
     })
     // .then((updatedVideo) => {
-    //   newVideo(title, videoUrl, description, img).then(([_, updatedVideo]) =>
+    //   newVideo(title, videoUrl, description, imgUrl).then(([_, updatedVideo]) =>
     //     res.status(200).json(updatedVideo)
     //   );
     // })
@@ -87,14 +93,14 @@ function editVideo(req, res, next) {
 }
 
 function deleteVideo(req, res, next) {
-  const { videoId, playlistId } = req.params;
+  const { videoId } = req.params;
   const { _id: userId } = req.user;
 
   Promise.all([
     videoModel.findOneAndDelete({ _id: videoId, userId }),
     userModel.findOneAndUpdate({ _id: userId }, { $pull: { videos: videoId } }),
     playlistModel.findOneAndUpdate(
-      { _id: playlistId },
+      // { _id: playlistId },
       { $pull: { videos: videoId } }
     ),
   ])
@@ -112,8 +118,6 @@ function like(req, res, next) {
   const { videoId } = req.params;
   const { _id: userId } = req.user;
 
-  console.log('like');
-
   videoModel
     .updateOne(
       { _id: videoId },
@@ -125,6 +129,7 @@ function like(req, res, next) {
 }
 
 module.exports = {
+  getVideo,
   getLatestsVideos,
   newVideo,
   createVideo,
