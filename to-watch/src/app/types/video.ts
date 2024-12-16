@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { Playlist } from './playlist';
 import { User } from './user';
 
 export interface Video {
@@ -10,7 +10,7 @@ export interface Video {
   _id: string;
   text: string;
   userId: User;
-  categoryId: Category;
+  playlistId: Playlist;
   created_at: string;
   updatedAt: string;
   __v: number;

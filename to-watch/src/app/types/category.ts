@@ -1,10 +1,10 @@
 import { Video } from './video';
 import { User } from './user';
 
-export interface Category {
+export interface Playlist {
   videos: Video[];
   _id: string;
-  categoryName: string;
+  playlistName: string;
   userId: User;
   created_at: string;
   updatedAt: string;
