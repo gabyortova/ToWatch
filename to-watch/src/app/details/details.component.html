@@ -1,9 +1,11 @@
 <div class="details-container">
   <h1>Video Details</h1>
-  <h2>{{ video.title }}</h2>
+  <h2>Title: {{ video.title }}</h2>
   
   <img src="{{ video.imgUrl }}" />
   <p><strong>Description:</strong> {{ video.description }}</p>
+  <p><strong>Created at:</strong> {{ video.created_at | date: "dd.mm.yyyy"}}</p>
+
   <a routerLink="{{ video.videoUrl }}" target="_blank">Watch Video</a>
 
   @if(canManipulate()){

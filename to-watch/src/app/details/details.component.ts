@@ -3,11 +3,12 @@ import { ApiService } from './../api.service';
 import { Video } from './../types/video';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })

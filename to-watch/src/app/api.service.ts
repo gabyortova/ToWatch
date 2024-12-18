@@ -17,9 +17,9 @@ export class ApiService {
   get userId(): string {
     return this.userService.user?._id || '';
   }
-  
+
   getUserVideos() {
-    return this.http.get<Video[]>(`/api/videos/user/${this.userId}`);
+    return this.http.get<Video[]>(`/api/videos/my`);
   }
 
   getSingleVideo(id: string) {

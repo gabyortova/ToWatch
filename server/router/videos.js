@@ -9,7 +9,7 @@ router.get('/', videoController.getLatestsVideos);
 router.post('/', auth(), videoController.createVideo);
 
 
-// router.get('/user/:userId', videoController.getUserVideos);
+router.get('/my', auth(), videoController.getUserVideos);
 router.get('/:videoId', videoController.getVideo);
 
 router.put('/:videoId', auth(), videoController.editVideo);

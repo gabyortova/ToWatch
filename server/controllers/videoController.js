@@ -36,7 +36,8 @@ function getVideo(req, res, next) {
 }
 
 function getUserVideos(req, res, next) {
-  const { userId } = req.params;
+  const { _id: userId } = req.user;
+  console.log('getUserVideos userid ' + userId);
   videoModel
     .find({ userId: userId })
     .sort({ created_at: -1 })
@@ -152,6 +153,7 @@ function getPublicVideos(params) {
 module.exports = {
   getVideo,
   getLatestsVideos,
+  getUserVideos,
   newVideo,
   createVideo,
   editVideo,
