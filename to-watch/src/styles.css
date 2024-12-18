@@ -13,7 +13,8 @@ input {
   font-size: 16px;
 }
 
-button {
+button,
+button:disabled:hover {
   background-color: #612940;
   color: #fdecef;
   font-size: 1.2em;
@@ -29,6 +30,9 @@ button {
 button:hover {
   background-color: #9d6381;
 }
+button:disabled {
+  opacity: 0.5;
+}
 
 a {
   color: #612940;
@@ -39,4 +43,15 @@ a {
   background-color: white;
   border: #cecccc solid;
   border-radius: 15px;
+}
+p.error {
+  color: #612940;
+  margin: 6px;
+}
+
+.inputCont {
+  margin: 6px 0 22px 0;
+}
+input {
+  margin: 6px 0;
 }

@@ -5,7 +5,7 @@ Let's make our first API request to the REST-api!
 
 In the example below, we're trying to get information about the REST-api:
 
-```https://localhost:3000/api/test```
+```https://localhost:5000/api/test```
 
 Here is the response we get:
 
@@ -13,7 +13,7 @@ Here is the response we get:
 {
     "name": "rest-api",
     "version": "1.0.0",
-    "description": "REST-api for back-end of Angular course workshop in SoftUni",
+    "description": "REST-api for back-end of Angular application ToWatch",
     "main": "index.js",
 }
 ```
@@ -25,7 +25,7 @@ The Base URL is the root URL for all of the API, if you ever make a request to t
 
 The Base URL for the API is:
 
-```https://localhost:3000/api```
+```https://localhost:5000/api```
 
 The documentation below assumes you are prepending the Base URL to the endpoints in order to make requests.
 
@@ -49,11 +49,10 @@ Signs up user and returns the registered data as json.
 
 ```
 {
-    "name":"John Doe",
     "email":"john@email.com",
     "username":"Johny",
-    "password":"12345",
-    "rePassword":"12345"
+    "pass":"12345",
+    "rePass":"12345"
 }
 ```
 
@@ -63,11 +62,7 @@ Required:
 
 ```username``` : [string] -- The username of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
 
-```password``` : [string] -- The password of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
-
-Not Required
-
-```tel``` : [string] -- Optional;
+```pass``` : [string] -- The password of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
 
 ### Success Response:
 
@@ -76,14 +71,12 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": [],
-    "posts": [],
-    "_id": "5f1875690916010017964978",
-    "name": "John Doe",
     "email": "john@email.com",
     "username": "Johny",
-    "created_at": "2020-10-14T08:04:12.196Z",
-    "updatedAt": "2020-10-14T08:58:53.589Z"
+    "videos": [],
+    "_id": "67634e5fa832cb3beb3c1b57",
+    "created_at": "2024-12-18T22:36:15.490Z",
+    "updatedAt": "2024-12-18T22:36:15.490Z"
 }
 ```
 
@@ -109,14 +102,14 @@ Signs in user and returns the registered data as json.
 
 ```
 {
-    "username":"Johny",
+    "email":"john@email.com",
     "password":"12345"
 }
 ```
 
 Required:
 
-```username``` : [string] -- The username of the person 
+```email``` : [string] -- The email of the person 
 
 ```password``` : [string] -- The password of the person 
 

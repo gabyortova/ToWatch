@@ -36,10 +36,6 @@ const userSchema = new mongoose.Schema({
             message: props => `${props.value} must contains only latin letters and digits!`
         },
     },
-    videos: [{
-        type: ObjectId,
-        ref: "Video"
-    }]
 }, { timestamps: { createdAt: 'created_at' } });
 
 userSchema.methods = {
