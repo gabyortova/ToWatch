@@ -6,6 +6,7 @@ import { CreateVideoComponent } from './create-video/create-video.component';
 import { ToWatchComponent } from './to-watch/to-watch.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { AuthGuard } from './guards/auth.guard';
 // import { Component } from '@angulto-watch/to-watch.component';/core';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
@@ -21,6 +22,7 @@ export const routes: Routes = [
       {
         path: ':videoId',
         component: DetailsComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },
@@ -31,14 +33,15 @@ export const routes: Routes = [
       {
         path: ':videoId',
         component: EditFormComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },
   { path: 'my-videos', component: ToWatchComponent },
-  { path: 'create-video', component: CreateVideoComponent },
+  { path: 'create-video', component: CreateVideoComponent,  canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'details', component: DetailsComponent },
+  // { path: 'details', component: DetailsComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '**', redirectTo: '/404' },
 ];

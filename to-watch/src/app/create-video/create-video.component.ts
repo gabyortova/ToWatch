@@ -24,12 +24,22 @@ export class CreateVideoComponent {
     }
 
     const { title, videoUrl, description, imgUrl } = form.value;
-    console.log(form.value);
+    // console.log(form.value);
 
     this.apiService
       .createVideo(title, videoUrl, description, imgUrl)
-      .subscribe(() => {
-        this.router.navigateByUrl('/catalog');
+      .subscribe({
+        
+        error: (err) => {
+          if (
+            err.status === 401 &&
+            err.error.message === 'Token expired. Please log in again.'
+          ) {
+            // Prompt user to login again or refresh token
+            this.router.navigateByUrl('/login');
+          }
+        },
       });
   }
 }
+// this.router.navigateByUrl('/catalog');

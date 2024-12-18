@@ -1,5 +1,5 @@
 global.__basedir = __dirname;
-require('dotenv').config()
+require('dotenv').config();
 const dbConnector = require('./config/db');
 // const mongoose = require('mongoose');
 const apiRouter = require('./router');
@@ -13,11 +13,13 @@ dbConnector()
 
     const app = require('express')();
     require('./config/express')(app);
-
-    app.use(cors({
-      origin: config.origin,
-      credentials: true
-    }));
+    console.log(`origin: ${config.origin}`);
+    app.use(
+      cors({
+        origin: config.origin,
+        credentials: true,
+      })
+    );
 
     app.use('/api', apiRouter);
 

@@ -38,7 +38,12 @@ export class EditFormComponent implements OnInit {
       return;
     }
 
-    const videoId = this.route.snapshot.paramMap.get('videoId');
+    // const videoId = this.route.snapshot.paramMap.get('videoId');
+    let videoId;
+    this.route.paramMap.subscribe((params) => {
+      videoId = params.get('videoId');
+      console.log('Video ID:', videoId);
+    });
     const { title, videoUrl, description, imgUrl } = form.value;
 
     this.apiService

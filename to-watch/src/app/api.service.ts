@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Video } from './types/video';
@@ -6,14 +7,22 @@ import { Video } from './types/video';
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+  // private refreshToken() {
+  //   return this.http.post<{ accessToken: string }>(
+  //     'http://localhost:5000/api/users/refresh-token',
+  //     {},
+  //     { withCredentials: true }
+  //   );
+  // }
 
   getVideos() {
-    return this.http.get<Video[]>(`http://localhost:5000/api/videos`);
+    return this.http.get<Video[]>(`http://localhost:5000/api/videos`, { withCredentials: true });
   }
 
   getSingleVideo(id: string) {
-    return this.http.get<Video>(`http://localhost:5000/api/videos/${id}`);
+    return this.http.get<Video>(`/api/videos/${id}`, { withCredentials: true });
   }
 
   createVideo(
@@ -22,13 +31,34 @@ export class ApiService {
     description: string,
     imgUrl: string
   ) {
-    const payload = { title, videoUrl, description, imgUrl };
+    // const payload = { title, videoUrl, description, imgUrl };
+
+    // return this.http
+    //   .post<Video>('http://localhost:5000/api/videos', payload, {
+    //     withCredentials: true,
+    //   })
+    //   .toPromise()
+    //   .catch(this.handleError.bind(this));
+
+    const video = { title, videoUrl, description, imgUrl };
     //TODO: fix
-    return this.http.post<Video>(`http://localhost:5000/api/videos`, payload);
+    return this.http.post<Video>(`http://localhost:5000/api/videos`, video, {
+      withCredentials: true,
+    });
   }
 
-  updateVideo(videoId: string, title: string, videoUrl: string, description: string, imgUrl: string) {
-    const payload = { title, videoUrl, description, imgUrl};
-    return this.http.put<Video>(`http://localhost:5000/api/videos/${videoId}`, payload);
+  updateVideo(
+    videoId: string,
+    title: string,
+    videoUrl: string,
+    description: string,
+    imgUrl: string
+  ) {
+    const video = { title, videoUrl, description, imgUrl };
+    return this.http.put<Video>(`http://localhost:5000/api/videos/${videoId}`, video, { withCredentials: true });
   }
+
+  // deleteVideo(videoId: string, postId: string) {
+  //   return this.http.delete(`/api/videos/${videoId}`);
+  // }
 }

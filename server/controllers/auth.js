@@ -13,7 +13,7 @@ const removePassword = (data) => {
 
 function register(req, res, next) {
   const { username, email, pass: password, rePass } = req.body;
-  
+
   return userModel
     .create({ username, email, password })
     .then((createdUser) => {
@@ -72,7 +72,10 @@ function login(req, res, next) {
           secure: true,
         });
       } else {
-        res.cookie(authCookieName, token, { httpOnly: true });
+        console.log('development token ' + token);
+        console.log(res.cookie);
+
+        res.cookie(authCookieName, token, { httpOnly: true, secure: false });
       }
       res.status(200).send(user);
     })

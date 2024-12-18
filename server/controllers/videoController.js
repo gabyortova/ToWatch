@@ -50,15 +50,21 @@ function getLatestsVideos(req, res, next) {
 }
 
 function createVideo(req, res, next) {
+  console.log('create');
+  console.log('user' + req.user);
+  
   const { title, videoUrl, description, imgUrl } = req.body;
+  const { _id: userId } = req.user;
+  console.log('userid ' + userId);
+  
   console.log(
-    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, imgUrl: ${imgUrl}`
+    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, imgUrl: ${imgUrl}, userid: ${_id}`
   );
+  
 
-  // const { _id: userId } = req.user;
 
   videoModel
-    .create({ title, videoUrl, description, imgUrl })
+    .create({ userId, title, videoUrl, description, imgUrl })
     .then((video) => {
       return res.status(200).json(video);
     })
@@ -72,24 +78,30 @@ function createVideo(req, res, next) {
 
 function editVideo(req, res, next) {
   const { videoId } = req.params;
-  const { videoText } = req.body;
+  const { title, videoUrl, description, imgUrl } = req.body;
   const { _id: userId } = req.user;
 
-  // if the userId is not the same as this one of the video, the video will not be updated
   videoModel
     .findOneAndUpdate(
       { _id: videoId, userId },
-      { text: videoText },
-      { new: true }
+      { title, videoUrl, description, imgUrl },
+      { new: true, runValidators: true }
     )
     .then((updatedVideo) => {
       if (updatedVideo) {
         res.status(200).json(updatedVideo);
       } else {
-        res.status(401).json({ message: `Not allowed!` });
+        res
+          .status(403)
+          .json({ message: 'Not allowed! You are not the owner.' });
       }
     })
-    .catch(next);
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(500)
+        .json({ message: 'Something went wrong.', error: err.message });
+    });
 }
 
 function deleteVideo(req, res, next) {
