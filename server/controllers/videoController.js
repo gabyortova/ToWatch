@@ -18,7 +18,7 @@ function getVideo(req, res, next) {
 
   videoModel
     .findById(videoId)
-    .populate('userId') // Populate user details if needed
+    // .populate('userId') // Populate user details if needed
     .then((video) => {
       if (!video) {
         // If no video is found, send a 404 response
@@ -35,11 +35,23 @@ function getVideo(req, res, next) {
     });
 }
 
+function getUserVideos(req, res, next) {
+  const { userId } = req.params;
+  videoModel
+    .find({ userId: userId })
+    .sort({ created_at: -1 })
+    // .populate('playlistId userId')
+    .then((videos) => {
+      res.status(200).json(videos);
+    })
+    .catch(next);
+}
+
 function getLatestsVideos(req, res, next) {
   const limit = Number(req.query.limit) || 0;
 
   videoModel
-    .find()
+    .find({ isPublic: true })
     .sort({ created_at: -1 })
     .limit(limit)
     // .populate('playlistId userId')
@@ -53,38 +65,31 @@ function createVideo(req, res, next) {
   console.log('create');
   console.log('user' + req.user);
   
-  const { title, videoUrl, description, imgUrl } = req.body;
+  const { title, videoUrl, description, imgUrl, isPublic } = req.body;
   const { _id: userId } = req.user;
   console.log('userid ' + userId);
   
   console.log(
-    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, imgUrl: ${imgUrl}, userid: ${_id}`
+    `title: ${title}, videoUrl: ${videoUrl}, description: ${description}, imgUrl: ${imgUrl}, userid: ${userId}`
   );
   
-
-
   videoModel
-    .create({ userId, title, videoUrl, description, imgUrl })
+    .create({ userId, title, videoUrl, description, imgUrl, isPublic })
     .then((video) => {
       return res.status(200).json(video);
     })
-    // .then((updatedVideo) => {
-    //   newVideo(title, videoUrl, description, imgUrl).then(([_, updatedVideo]) =>
-    //     res.status(200).json(updatedVideo)
-    //   );
-    // })
     .catch(next);
 }
 
 function editVideo(req, res, next) {
   const { videoId } = req.params;
-  const { title, videoUrl, description, imgUrl } = req.body;
+  const { title, videoUrl, description, imgUrl, isPublic } = req.body;
   const { _id: userId } = req.user;
 
   videoModel
     .findOneAndUpdate(
       { _id: videoId, userId },
-      { title, videoUrl, description, imgUrl },
+      { title, videoUrl, description, imgUrl, isPublic },
       { new: true, runValidators: true }
     )
     .then((updatedVideo) => {
@@ -111,10 +116,10 @@ function deleteVideo(req, res, next) {
   Promise.all([
     videoModel.findOneAndDelete({ _id: videoId, userId }),
     userModel.findOneAndUpdate({ _id: userId }, { $pull: { videos: videoId } }),
-    playlistModel.findOneAndUpdate(
+    // playlistModel.findOneAndUpdate(
       // { _id: playlistId },
-      { $pull: { videos: videoId } }
-    ),
+    //   { $pull: { videos: videoId } }
+    // ),
   ])
     .then(([deletedOne, _, __]) => {
       if (deletedOne) {
@@ -138,6 +143,10 @@ function like(req, res, next) {
     )
     .then(() => res.status(200).json({ message: 'Liked successful!' }))
     .catch(next);
+}
+
+function getPublicVideos(params) {
+  
 }
 
 module.exports = {

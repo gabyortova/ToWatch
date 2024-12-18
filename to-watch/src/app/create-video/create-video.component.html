@@ -44,6 +44,9 @@
         #inputImg="ngModel"
         minlength="10"
       />
+
+      <label><b>Is public:</b></label>
+      <input type="checkbox" name="isPublic" id="isPublic" ngModel/>
     </div>
     <button [disabled]="form.invalid">Create</button>
   </div>

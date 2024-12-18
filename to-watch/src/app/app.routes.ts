@@ -21,7 +21,6 @@ export const routes: Routes = [
       {
         path: ':videoId',
         component: DetailsComponent,
-        canActivate: [AuthGuard],
       },
     ],
   },

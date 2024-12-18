@@ -33,23 +33,17 @@ export class EditFormComponent implements OnInit {
   }
 
   updateVideo(form: NgForm) {
-    if (form.invalid || !this.video) {
+    if ( !this.video ||form.invalid) {
       console.error('Invalid form or video data is missing!');
       return;
     }
 
-    // const videoId = this.route.snapshot.paramMap.get('videoId');
-    let videoId;
-    this.route.paramMap.subscribe((params) => {
-      videoId = params.get('videoId');
-      console.log('Video ID:', videoId);
-    });
-    const { title, videoUrl, description, imgUrl } = form.value;
+    const { title, videoUrl, description, imgUrl, isPublic } = form.value;
 
     this.apiService
-      .updateVideo(videoId!, title, videoUrl, description, imgUrl)
+      .updateVideo(this.video!._id, title, videoUrl, description, imgUrl, isPublic)
       .subscribe(() => {
-        this.router.navigate(['/catalog']);
+        this.router.navigate([`/catalog/${this.video!._id}`]);
       });
   }
 }

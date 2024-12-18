@@ -1,11 +1,13 @@
 <div class="details-container">
   <h1>Video Details</h1>
-  <p><strong>ID:</strong> {{ video._id }}</p>
-  <p><strong>Title:</strong> {{ video.title }}</p>
+  <h2>{{ video.title }}</h2>
+  
+  <img src="{{ video.imgUrl }}" />
   <p><strong>Description:</strong> {{ video.description }}</p>
-  <p><strong>videoUrl:</strong> {{ video.videoUrl }}</p>
-  <p><strong> imgUrl :</strong> {{ video.imgUrl }}</p>
+  <a routerLink="{{ video.videoUrl }}" target="_blank">Watch Video</a>
 
+  @if(canManipulate()){
   <a routerLink="/edit/{{ video._id }}" class="back-btn">Edit</a>
-  <a routerLink="/" class="back-btn">Delete</a>
+  <a (click)="onDelete()" routerLink="/delete/{{ video._id }}" class="back-btn">Delete</a>
+  }
 </div>

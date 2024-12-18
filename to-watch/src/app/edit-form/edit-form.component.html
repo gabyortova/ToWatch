@@ -1,13 +1,14 @@
 <form #form="ngForm" (ngSubmit)="updateVideo(form)">
   <div class="form-container">
     <h1>Update video</h1>
+    @if(video) {
     <div class="fields">
       <label for="title"><b>Title:</b></label>
       <input
         type="text"
         name="title"
         id="title"
-        ngModel
+        [(ngModel)]="video.title"
         #inputTitle="ngModel"
         required
         minlength="5"
@@ -18,7 +19,7 @@
         type="text"
         name="videoUrl"
         id="videoUrl"
-        ngModel
+        [(ngModel)]="video.videoUrl"
         #inputVideoUrl="ngModel"
         required
         minlength="10"
@@ -28,7 +29,7 @@
       <textarea
         name="description"
         id="description"
-        ngModel
+        [(ngModel)]="video.description"
         #inputDescription="ngModel"
         required
         minlength="10"
@@ -40,11 +41,20 @@
         type="text"
         name="imgUrl"
         id="imgUrl"
-        ngModel
+        [(ngModel)]="video.imgUrl"
         #inputImg="ngModel"
         minlength="10"
       />
+
+      <label><b>Is public:</b></label>
+      <input
+        type="checkbox"
+        name="isPublic"
+        id="isPublic"
+        [(ngModel)]="video.isPublic"
+      />
     </div>
     <button [disabled]="form.invalid">Update</button>
+    }
   </div>
 </form>

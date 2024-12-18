@@ -12,7 +12,7 @@ router.post('/logout', authController.logout);
 
 router.use('/users', users);
 // router.use('/collections', playlists); //themes
-router.use('/videos', videos); //posts
+router.use('/videos', videos);
 router.use('/likes', likes);
 router.use('/test', test);
 

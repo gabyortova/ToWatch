@@ -23,11 +23,11 @@ export class CreateVideoComponent {
       return;
     }
 
-    const { title, videoUrl, description, imgUrl } = form.value;
-    // console.log(form.value);
+    const { title, videoUrl, description, imgUrl, isPublic } = form.value;
+    console.log(form.value);
 
     this.apiService
-      .createVideo(title, videoUrl, description, imgUrl)
+      .createVideo(title, videoUrl, description, imgUrl, isPublic)
       .subscribe(()=>{
         this.router.navigate(['/my-videos']);
       });

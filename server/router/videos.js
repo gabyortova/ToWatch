@@ -8,8 +8,11 @@ const { videoController } = require('../controllers');
 router.get('/', videoController.getLatestsVideos);
 router.post('/', auth(), videoController.createVideo);
 
-router.get('/:videoId', videoController.getVideo);
-router.put('/:videoId', auth(), videoController.editVideo);
 
+// router.get('/user/:userId', videoController.getUserVideos);
+router.get('/:videoId', videoController.getVideo);
+
+router.put('/:videoId', auth(), videoController.editVideo);
+router.delete('/:videoId', auth(), videoController.deleteVideo);
 
 module.exports = router;

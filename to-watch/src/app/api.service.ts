@@ -1,3 +1,4 @@
+import { UserService } from './user/user.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,18 +8,18 @@ import { Video } from './types/video';
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient, private router: Router) {}
-
-  // private refreshToken() {
-  //   return this.http.post<{ accessToken: string }>(
-  //     'http://localhost:5000/api/users/refresh-token',
-  //     {},
-  //     { withCredentials: true }
-  //   );
-  // }
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) {}
 
   getVideos() {
     return this.http.get<Video[]>('/api/videos');
+  }
+
+  get userId(): string {
+    return this.userService.user?._id || '';
+  }
+  
+  getUserVideos() {
+    return this.http.get<Video[]>(`/api/videos/user/${this.userId}`);
   }
 
   getSingleVideo(id: string) {
@@ -29,19 +30,11 @@ export class ApiService {
     title: string,
     videoUrl: string,
     description: string,
-    imgUrl: string
+    imgUrl: string,
+    isPublic: boolean
   ) {
-    // const payload = { title, videoUrl, description, imgUrl };
+    const video = { title, videoUrl, description, imgUrl, isPublic };
 
-    // return this.http
-    //   .post<Video>('http://localhost:5000/api/videos', payload, {
-    //     withCredentials: true,
-    //   })
-    //   .toPromise()
-    //   .catch(this.handleError.bind(this));
-
-    const video = { title, videoUrl, description, imgUrl };
-    //TODO: fix
     return this.http.post<Video>(`/api/videos`, video);
   }
 
@@ -50,9 +43,10 @@ export class ApiService {
     title: string,
     videoUrl: string,
     description: string,
-    imgUrl: string
+    imgUrl: string,
+    isPublic: boolean
   ) {
-    const video = { title, videoUrl, description, imgUrl };
+    const video = { title, videoUrl, description, imgUrl, isPublic };
     return this.http.put<Video>(`/api/videos/${videoId}`, video);
   }
 

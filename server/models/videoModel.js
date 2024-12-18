@@ -19,6 +19,9 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isPublic: {
+      type: Boolean,
+    },
     userId: {
       type: ObjectId,
       ref: 'User',
