@@ -1,7 +1,5 @@
 <header>
-  <a routerLink="/home"
-    ><img src="./img/logoToWatch.png" class="logo"
-  /></a>
+  <a routerLink="/home"><img src="./img/logoToWatch.png" class="logo" /></a>
   <nav>
     <ul>
       <li>
@@ -10,12 +8,14 @@
       <li>
         <a routerLink="/catalog">Catalog</a>
       </li>
+      @if(isLoggedIn){
       <li>
         <a routerLink="/my-videos">My videos</a>
       </li>
       <li>
         <a routerLink="/create-video">Create video</a>
       </li>
+      }
     </ul>
   </nav>
   <ul>

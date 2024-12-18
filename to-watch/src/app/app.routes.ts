@@ -14,9 +14,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'catalog', component: CatalogComponent },
   {
-    path: 'details',
+    path: 'catalog',
     children: [
       { path: '', component: CatalogComponent },
       {
@@ -38,7 +37,11 @@ export const routes: Routes = [
     ],
   },
   { path: 'my-videos', component: ToWatchComponent },
-  { path: 'create-video', component: CreateVideoComponent,  canActivate: [AuthGuard]},
+  {
+    path: 'create-video',
+    component: CreateVideoComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   // { path: 'details', component: DetailsComponent },

@@ -73,7 +73,7 @@ function createVideo(req, res, next) {
     //     res.status(200).json(updatedVideo)
     //   );
     // })
-    .catch((err) => res.status(500).json(err));
+    .catch(next);
 }
 
 function editVideo(req, res, next) {

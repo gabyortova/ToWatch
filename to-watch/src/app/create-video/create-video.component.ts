@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpClient } from '@angular/common/http';
 
-import { Component } from '@angular/core';
 import { ApiService } from './../api.service';
+import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -28,18 +28,8 @@ export class CreateVideoComponent {
 
     this.apiService
       .createVideo(title, videoUrl, description, imgUrl)
-      .subscribe({
-        
-        error: (err) => {
-          if (
-            err.status === 401 &&
-            err.error.message === 'Token expired. Please log in again.'
-          ) {
-            // Prompt user to login again or refresh token
-            this.router.navigateByUrl('/login');
-          }
-        },
+      .subscribe(()=>{
+        this.router.navigate(['/my-videos']);
       });
-  }
+    }
 }
-// this.router.navigateByUrl('/catalog');

@@ -18,11 +18,11 @@ export class ApiService {
   // }
 
   getVideos() {
-    return this.http.get<Video[]>(`http://localhost:5000/api/videos`, { withCredentials: true });
+    return this.http.get<Video[]>('/api/videos');
   }
 
   getSingleVideo(id: string) {
-    return this.http.get<Video>(`/api/videos/${id}`, { withCredentials: true });
+    return this.http.get<Video>(`/api/videos/${id}`);
   }
 
   createVideo(
@@ -42,9 +42,7 @@ export class ApiService {
 
     const video = { title, videoUrl, description, imgUrl };
     //TODO: fix
-    return this.http.post<Video>(`http://localhost:5000/api/videos`, video, {
-      withCredentials: true,
-    });
+    return this.http.post<Video>(`/api/videos`, video);
   }
 
   updateVideo(
@@ -55,10 +53,10 @@ export class ApiService {
     imgUrl: string
   ) {
     const video = { title, videoUrl, description, imgUrl };
-    return this.http.put<Video>(`http://localhost:5000/api/videos/${videoId}`, video, { withCredentials: true });
+    return this.http.put<Video>(`/api/videos/${videoId}`, video);
   }
 
-  // deleteVideo(videoId: string, postId: string) {
-  //   return this.http.delete(`/api/videos/${videoId}`);
-  // }
+  deleteVideo(videoId: string) {
+    return this.http.delete(`/api/videos/${videoId}`);
+  }
 }

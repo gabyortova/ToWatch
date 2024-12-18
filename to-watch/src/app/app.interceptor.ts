@@ -18,7 +18,7 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
       withCredentials: true,
     });
   }
-
+  console.log(`req URL ${req.url}, withCredentials: ${req.withCredentials}`);
   const errorMsgService = inject(ErrorMsgService);
   const router = inject(Router);
 
