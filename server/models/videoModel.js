@@ -17,7 +17,6 @@ const videoSchema = new mongoose.Schema(
     },
     imgUrl: {
       type: String,
-      required: true,
     },
     isPublic: {
       type: Boolean,
