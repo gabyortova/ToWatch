@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class CreateVideoComponent {
   constructor(private apiService: ApiService, private router: Router) {}
+  isPublic:boolean = false;
 
   addVideo(form: NgForm) {
     if (form.invalid) {
@@ -28,8 +29,8 @@ export class CreateVideoComponent {
 
     this.apiService
       .createVideo(title, videoUrl, description, imgUrl, isPublic)
-      .subscribe(()=>{
+      .subscribe(() => {
         this.router.navigate(['/my-videos']);
       });
-    }
+  }
 }

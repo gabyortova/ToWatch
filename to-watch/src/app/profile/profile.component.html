@@ -1,5 +1,5 @@
 <div class="big-container profile-container">
-    <h1>Profile</h1>
+  <h1>Profile</h1>
   @if(!isEditMode) {
   <div class="profile-details">
     <p><strong>Username:</strong> {{ profileDetails.username }}</p>
@@ -8,32 +8,70 @@
   </div>
   } @else {
   <form #form="ngForm" (ngSubmit)="handleSaveProfile(form)">
-    <div >
+    <div>
       <div class="inputCont">
         <label for="username"><b>Username:</b></label>
         <input
+          [class]="(
+            (inputUsername?.touched && inputUsername?.errors?.['required']) || 
+            (inputUsername?.touched && inputUsername?.errors?.['minlength']))
+             ? 'input-error': ''"
           type="text"
           id="username"
           name="username"
           ngModel
+          #inputUsername="ngModel"
           required
           minlength="2"
           [(ngModel)]="profileDetails.username"
         />
+
+        @if(inputUsername?.touched){
+        <div>
+          @if(inputUsername?.errors?.['required']){
+          <p class="error">Username is required!</p>
+          }
+          <!--  -->
+          @if(inputUsername?.errors?.['minlength']){
+          <p class="error">Username must be at least 2 characters!</p>
+          }
+        </div>
+        }
       </div>
       <div class="inputCont">
         <label for="email"><b>Email:</b></label>
         <input
+          [class]="(
+            (inputEmail?.touched && inputEmail?.errors?.['required']) || 
+             (inputEmail?.touched && inputEmail?.errors?.['emailValidator']))
+             ? 'input-error': ''"
           type="email"
           id="email"
           name="email"
           ngModel
+          #inputEmail="ngModel"
           required
+          [appEmail]="domains"
           [(ngModel)]="profileDetails.email"
         />
+
+        @if(inputEmail?.touched){
+        <div>
+          @if(inputEmail?.errors?.['required']){
+          <p class="error">Email is required!</p>
+          }
+          <!--  -->
+          @if(inputEmail?.errors?.['emailValidator']){
+          <p class="error">Email is not valid gmail!</p>
+          }
+        </div>
+        }
+
       </div>
       <div class="buttons">
-        <button type="button" class="button" (click)="onCancel($event, form)">Cancel</button>
+        <button type="button" class="button" (click)="onCancel($event, form)">
+          Cancel
+        </button>
         <button [disabled]="form.invalid" class="button">Save</button>
       </div>
     </div>
