@@ -13,8 +13,8 @@ export class ErrorMsgComponent implements OnInit {
   constructor(private errorMsgService: ErrorMsgService) {}
 
   ngOnInit(): void {
-    this.errorMsgService.apiError$.subscribe((err: any) => {
-      this.errorMsg.set(err?.message);
+    this.errorMsgService.apiError$.subscribe((error: any) => {
+      this.errorMsg.set(error?.err ? error.err.message : error?.message);
     });
   }
 }

@@ -15,7 +15,7 @@
           id="username"
           ngModel
           #inputUsername="ngModel"
-          minlength="5"
+          minlength="2"
           required
         />
 
@@ -26,7 +26,7 @@
           }
           <!--  -->
           @if(inputUsername?.errors?.['minlength']){
-          <p class="error">Username must be at least 5 characters!</p>
+          <p class="error">Username must be at least 2 characters!</p>
           }
         </div>
         }
@@ -73,7 +73,7 @@
           placeholder="*******"
           name="pass"
           id="pass"
-          ngModel
+          [(ngModel)]="password"
           #inputPass="ngModel"
           minlength="5"
           required
@@ -103,20 +103,15 @@
           placeholder="*******"
           name="rePass"
           id="rePass"
-          ngModel
+          [(ngModel)]="rePassword"
           #inputRePass="ngModel"
-          minlength="5"
           required
         />
 
         @if(inputRePass?.touched){
         <div>
-          @if(inputRePass?.errors?.['required']){
-          <p class="error">Password is required!</p>
-          }
-          <!--  -->
-          @if(inputRePass?.errors?.['minlength']){
-          <p class="error">Password must be at least 5 characters!</p>
+          @if(inputRePass?.errors?.['required'] || !passwordsMatch){
+          <p class="error">Passwords don't match!</p>
           }
         </div>
         }

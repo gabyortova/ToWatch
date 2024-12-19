@@ -43,7 +43,7 @@ export const routes: Routes = [
     component: CreateVideoComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'error', component: ErrorMsgComponent },

@@ -1,15 +1,25 @@
 <div class="details-container">
   <h1>Video Details</h1>
-  <h2>Title: {{ video.title }}</h2>
-  
+  <h2>Title:</h2>
+  <p> {{ video.title }}</p>
+
   <img src="{{ video.imgUrl }}" />
-  <p><strong>Description:</strong> {{ video.description }}</p>
-  <p><strong>Created at:</strong> {{ video.created_at | date: "dd.mm.yyyy"}}</p>
+  <h2>Description:</h2>
+  <p>{{ video.description }}</p>
 
-  <a routerLink="{{ video.videoUrl }}" target="_blank">Watch Video</a>
+  <h2>Created at:</h2>
+  <p>{{ video.created_at | date : "dd.mm.yyyy" }}</p>
 
-  @if(canManipulate()){
-  <a routerLink="/edit/{{ video._id }}" class="back-btn">Edit</a>
-  <a (click)="onDelete()" routerLink="/delete/{{ video._id }}" class="back-btn">Delete</a>
-  }
+  <div class="buttons">
+    <a href="{{ video.videoUrl }}" class="button" target="_blank"
+      >Watch Video</a
+    >
+
+    @if(canManipulate()) {
+    <a routerLink="/edit/{{ video._id }}" class="button">Edit</a>
+    <a (click)="onDelete()" routerLink="/delete/{{ video._id }}" class="button"
+      >Delete</a
+    >
+    }
+  </div>
 </div>

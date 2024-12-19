@@ -5,8 +5,6 @@ import { UserService } from '../user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants';
-import { matchPasswordsValidator } from '../../utils/match-passwords.validator';
- 
 
 @Component({
   selector: 'app-register',
@@ -25,17 +23,23 @@ export class RegisterComponent {
       return;
     }
 
-    const {
-      username,
-      email,
-      pass,
-      rePass,
-    } = form.value;
+    const { username, email, pass, rePass } = form.value;
 
-    this.userService
-      .register(username, email, pass, rePass)
-      .subscribe(() => {
-        this.router.navigate(['/catalog']);
-      });
+    this.userService.register(username, email, pass, rePass).subscribe(() => {
+      this.router.navigate(['/catalog']);
+    });
+  }
+
+  password: string = '';
+  rePassword: string = '';
+
+  get passwordsMatch(): boolean {
+    return this.password === this.rePassword;
+  }
+
+  onSubmit(form: NgForm): void {
+    if (form.invalid || !this.passwordsMatch) {
+      return;
+    }
   }
 }
