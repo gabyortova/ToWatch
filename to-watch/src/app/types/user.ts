@@ -3,7 +3,6 @@ export interface User {
   username: string;
   pass: string;
   email: string;
-  phone: string;
   videos: string[];
   created_at: string;
   updatedAt: string;
@@ -14,6 +13,10 @@ export interface UserForAuth {
   _id: string;
   username: string;
   email: string;
-  phone?: string;
   pass: string;
+}
+
+export interface ProfileDetails {
+  username: string;
+  email: string; 
 }

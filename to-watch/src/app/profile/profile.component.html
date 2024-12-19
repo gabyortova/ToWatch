@@ -1,0 +1,210 @@
+<!-- @if(isEditMode){
+<div class="profile-container">
+  <h2>Profile</h2>
+  <div class="profile-details">
+    <p><strong>Username:</strong> {{ profileDetails.username }}</p>
+    <p><strong>Email:</strong> {{ profileDetails.email }}</p>
+    <button>Edit</button>
+  </div>
+</div>
+} @else {
+
+<form #form="ngForm" (ngSubmit)="handleSaveProfile(form)">
+    <div class="form-container">
+      <h1>Login</h1>
+      <div class="fields">
+        <div class="inputCont">
+          <label for="email"><b>Email:</b></label>
+          <input
+            [class]="(
+              (inputEmail?.touched && inputEmail?.errors?.['required']) || 
+               (inputEmail?.touched && inputEmail?.errors?.['emailValidator']))
+               ? 'input-error': ''"
+            type="email"
+            placeholder="your.mail@gmail.com"
+            name="email"
+            id="email"
+            ngModel
+            #inputEmail="ngModel"
+            [appEmail]="domains"
+            required
+          />
+  
+          @if(inputEmail?.touched){
+          <div>
+            @if(inputEmail?.errors?.['required']){
+            <p class="error">Email is required!</p>
+            }
+            
+            @if(inputEmail?.errors?.['emailValidator']){
+            <p class="error">Email is not valid gmail!</p>
+            }
+          </div>
+          }
+        </div>
+  
+   <div class="inputCont">
+          <label for="pass"><b>Password:</b></label>
+          <input
+            [class]="(
+          (inputPass?.touched && inputPass?.errors?.['required']) || 
+           (inputPass?.touched && inputPass?.errors?.['minlength']))
+           ? 'input-error': ''"
+            type="password"
+            placeholder="*******"
+            name="pass"
+            id="pass"
+            ngModel
+            #inputPass="ngModel"
+            minlength="5"
+            required
+          /> -->
+<!--   
+          @if(inputPass?.touched){
+          <div>
+            @if(inputPass?.errors?.['required']){
+            <p class="error">Password is required!</p>
+            } -->
+<!--  -->
+<!-- @if(inputPass?.errors?.['minlength']){
+            <p class="error">Password must be at least 5 characters!</p>
+            }
+          </div> -->
+<!-- } -->
+<!-- </div>
+      </div>
+      <button [disabled]="form.invalid">Login</button>
+    </div>
+    <div class="register">
+      <p>Don't have an account? <a routerLink="/register">Register</a></p>
+    </div>
+  </form> -->
+<!-- }  -->
+
+<div class="profile-container">
+  @if(!isEditMode) {
+  <div class="profile-details">
+    <p><strong>Username:</strong> {{ profileDetails.username }}</p>
+    <p><strong>Email:</strong> {{ profileDetails.email }}</p>
+    <button (click)="toggleEditMode()">Edit</button>
+  </div>
+  } @else {
+  <form #form="ngForm" (ngSubmit)="handleSaveProfile(form)">
+    <div class="form-container">
+      <div class="inputCont">
+        <label for="username"><b>Username:</b></label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          ngModel
+          required
+          minlength="2"
+          [(ngModel)]="profileDetails.username"
+        />
+      </div>
+      <div class="inputCont">
+        <label for="email"><b>Email:</b></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          ngModel
+          required
+          [(ngModel)]="profileDetails.email"
+        />
+      </div>
+      <div class="btn-wrapper">
+        <button type="button" (click)="onCancel($event, form)">Cancel</button>
+        <button [disabled]="form.invalid">Save</button>
+      </div>
+    </div>
+  </form>
+  }
+</div>
+
+<!-- homepage -->
+<!-- <div class="container">
+  <div class="profile">
+    <img src="./profile.png" alt="default user" />
+    <h3>User Info:</h3> -->
+
+<!-- READONLY MODE -->
+
+<!-- @if(!isEditMode){
+    <ng-container>
+      <div class="flex">
+        <p>Username:</p>
+        <p>{{ profileDetails.username }}</p>
+      </div>
+      <div class="flex">
+        <p>Email:</p>
+        <p>{{ profileDetails.email }}</p>
+      </div>
+      <button class="edit-button" (click)="toggleEditMode()">Edit</button>
+    </ng-container>
+    } @else {
+     EDIT MODE -->
+<!-- <ng-container> -->
+<!-- <form [formGroup]="form" (ngSubmit)="handleSaveProfile()"> -->
+
+<!-- <div class="flex">
+          <p>Username:</p>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value="Johny"
+            formControlName="username"
+          />
+        </div>
+        @if(form.get('username')?.touched){
+        <div>
+          @if(form.get('username')?.errors?.['required']){
+          <p class="error">Username is required!</p>
+          }
+            -->
+<!-- @if(form.get('username')?.errors?.['minlength']){
+          <p class="error">Username must be at least 5 characters!</p>
+          } -->
+<!-- </div> -->
+<!-- } -->
+
+<!-- <div class="flex"> -->
+<!-- <p>Email:</p> -->
+<!-- <input -->
+<!-- type="email" -->
+<!-- name="email" -->
+<!-- id="email" -->
+<!-- value="john.doe@gmail.com"
+            formControlName="email"
+          />
+        </div> -->
+
+<!-- @if(form.get('email')?.touched){ -->
+<!-- <div>
+          @if(form.get('email')?.errors?.['required']){
+          <p class="error">Email is required!</p>
+          } -->
+<!--  -->
+<!-- @if(form.get('email')?.errors?.['emailValidator']){
+          <p class="error">Email is not valid!</p>
+          }
+        </div>
+        } -->
+
+<!-- <div class="btn-wrapper"> -->
+<!-- <button class="red-button" (click)="onCancel($event)">Cancel</button>
+          <button
+            class="green-button"
+            [disabled]="form.invalid"
+            [style]="{ backgroundColor: form.invalid ? 'grey' : '#5cb85c' }"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </ng-container>
+    }
+  </div>
+</div> -->

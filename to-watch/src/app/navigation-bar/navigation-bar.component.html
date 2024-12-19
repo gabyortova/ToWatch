@@ -21,7 +21,7 @@
   <ul>
     @if(isLoggedIn){
     <li>
-      <a routerLink="/">Hello, {{ username }}!</a>
+      <a routerLink="/profile">Hello, {{ username }}!</a>
     </li>
     <li>
       <a (click)="logout()">Logout</a>

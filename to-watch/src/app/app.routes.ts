@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { DetailsComponent } from './details/details.component';
 import { RegisterComponent } from './user/register/register.component';
@@ -42,6 +43,7 @@ export const routes: Routes = [
     component: CreateVideoComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'profile', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'error', component: ErrorMsgComponent },
