@@ -9,7 +9,6 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { AuthGuard } from './guards/auth.guard';
-// import { Component } from '@angulto-watch/to-watch.component';/core';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 
@@ -26,17 +25,7 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'edit',
-    children: [
-      { path: '', component: EditFormComponent },
-      {
-        path: ':videoId',
-        component: EditFormComponent,
-        canActivate: [AuthGuard],
-      },
-    ],
-  },
+  { path: 'edit/:videoId', component: EditFormComponent, canActivate: [AuthGuard] },
   { path: 'my-videos', component: ToWatchComponent, canActivate: [AuthGuard] },
   {
     path: 'create-video',
