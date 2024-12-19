@@ -17,7 +17,7 @@ h1 {
   margin-top: 50px;
 }
 
-.form-container.fields {
+.form-container .fields {
   display: flex;
   flex-direction: column;
   width: 80%;

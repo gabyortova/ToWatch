@@ -1,3 +1,4 @@
+import { ErrorMsgService } from './../../core/error-msg/error-msg.service';
 import { DOMAINS } from './../../constants';
 import { EmailDirective } from './../../directives/email.directive';
 import { UserService } from './../user.service';
@@ -15,7 +16,11 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class LoginComponent {
   domains = DOMAINS;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private errorMsgService: ErrorMsgService
+  ) {}
 
   login(form: NgForm) {
     if (form.invalid) {
@@ -26,6 +31,7 @@ export class LoginComponent {
     const { email, pass: password } = form.value;
 
     this.userService.login(email, password).subscribe(() => {
+      this.errorMsgService.setError(null);
       this.router.navigate(['/catalog']);
     });
   }

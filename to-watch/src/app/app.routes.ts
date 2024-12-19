@@ -5,6 +5,7 @@ import { LoginComponent } from './user/login/login.component';
 import { CreateVideoComponent } from './create-video/create-video.component';
 import { ToWatchComponent } from './to-watch/to-watch.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { AuthGuard } from './guards/auth.guard';
 // import { Component } from '@angulto-watch/to-watch.component';/core';
@@ -43,7 +44,7 @@ export const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  // { path: 'details', component: DetailsComponent },
+  { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '**', redirectTo: '/404' },
 ];

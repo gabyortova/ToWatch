@@ -2,51 +2,118 @@
   <div class="form-container">
     <h1>Create video</h1>
     <div class="fields">
-      <label for="title"><b>Title:</b></label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        ngModel
-        #inputTitle="ngModel"
-        required
-        minlength="2"
-      />
+      <div class="inputCont">
+        <label for="title"><b>Title:</b></label>
+        <input
+          [class]="(
+            (inputTitle?.touched && inputTitle?.errors?.['required']) || 
+            (inputTitle?.touched && inputTitle?.errors?.['minlength']))
+             ? 'input-error': ''"
+          type="text"
+          name="title"
+          id="title"
+          ngModel
+          #inputTitle="ngModel"
+          required
+          minlength="2"
+        />
 
-      <label><b>Video URL:</b></label>
-      <input
-        type="text"
-        name="videoUrl"
-        id="videoUrl"
-        ngModel
-        #inputVideoUrl="ngModel"
-        required
-        minlength="10"
-      />
+        @if(inputTitle?.touched){
+        <div>
+          @if(inputTitle?.errors?.['required']){
+          <p class="error">Title is required!</p>
+          }
+          <!--  -->
+          @if(inputTitle?.errors?.['minlength']){
+          <p class="error">Title must be at least 2 characters!</p>
+          }
+        </div>
+        }
+      </div>
 
-      <label><b>Description:</b></label>
-      <textarea
-        name="description"
-        id="description"
-        ngModel
-        #inputDescription="ngModel"
-        required
-        minlength="5"
-        rows="3"
-      ></textarea>
+      <div class="inputCont">
+        <label><b>Video URL:</b></label>
+        <input
+          [class]="(
+            (inputVideoUrl?.touched && inputVideoUrl?.errors?.['required']) || 
+            (inputVideoUrl?.touched && inputVideoUrl?.errors?.['minlength']))
+             ? 'input-error': ''"
+          type="text"
+          name="videoUrl"
+          id="videoUrl"
+          ngModel
+          #inputVideoUrl="ngModel"
+          required
+          minlength="10"
+        />
 
-      <label><b>Image URL:</b></label>
-      <input
-        type="text"
-        name="imgUrl"
-        id="imgUrl"
-        ngModel
-        #inputImg="ngModel"
-        minlength="10"
-      />
+        @if(inputVideoUrl?.touched){
+        <div>
+          @if(inputVideoUrl?.errors?.['required']){
+          <p class="error">Video URL is required!</p>
+          }
+          <!--  -->
+          @if(inputVideoUrl?.errors?.['minlength']){
+          <p class="error">Video URL must be at least 10 characters!</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="inputCont">
+        <label><b>Description:</b></label>
+        <textarea
+          [class]="(
+            (inputDescription?.touched && inputDescription?.errors?.['required']) || 
+            (inputDescription?.touched && inputDescription?.errors?.['minlength']))
+             ? 'input-error': ''"
+          name="description"
+          id="description"
+          ngModel
+          #inputDescription="ngModel"
+          required
+          minlength="5"
+          rows="3"
+        ></textarea>
+
+        @if(inputDescription?.touched){
+        <div>
+          @if(inputDescription?.errors?.['required']){
+          <p class="error">Description is required!</p>
+          }
+          <!--  -->
+          @if(inputDescription?.errors?.['minlength']){
+          <p class="error">Description must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="inputCont">
+        <label><b>Image URL:</b></label>
+        <input
+          [class]="(
+            (inputImg?.touched && inputImg?.errors?.['minlength']))
+             ? 'input-error': ''"
+          type="text"
+          name="imgUrl"
+          id="imgUrl"
+          ngModel
+          #inputImg="ngModel"
+          minlength="10"
+        />
+
+        @if(inputImg?.touched){
+        <div>
+          @if(inputImg?.errors?.['minlength']){
+          <p class="error">Image URL must be at least 10 characters!</p>
+          }
+        </div>
+        }
+      </div>
 
       <label><b>Is public:</b></label>
-      <input type="checkbox" name="isPublic" id="isPublic" ngModel/>
+      <input type="checkbox" name="isPublic" id="isPublic" ngModel />
     </div>
     <button [disabled]="form.invalid">Create</button>
   </div>

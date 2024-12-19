@@ -2,53 +2,126 @@
   <div class="form-container">
     <h1>Register</h1>
     <div class="fields">
-    <label for="username"><b>Username:</b></label>
-    <input
-      type="text"
-      placeholder="your username"
-      name="username"
-      id="username"
-      ngModel
-      #inputUsername="ngModel"
-      required
-    />
+      <div class="inputCont">
+        <label for="username"><b>Username:</b></label>
+        <input
+          [class]="(
+            (inputUsername?.touched && inputUsername?.errors?.['required']) || 
+            (inputUsername?.touched && inputUsername?.errors?.['minlength']))
+             ? 'input-error': ''"
+          type="text"
+          placeholder="your username"
+          name="username"
+          id="username"
+          ngModel
+          #inputUsername="ngModel"
+          minlength="5"
+          required
+        />
 
-    <label for="email"><b>Email:</b></label>
-    <input
-      type="text"
-      placeholder="your.mail@gmail.com"
-      name="email"
-      id="email"
-      ngModel
-      #inputEmail="ngModel"
-      required
-      [appEmail]="domains"
-    />
+        @if(inputUsername?.touched){
+        <div>
+          @if(inputUsername?.errors?.['required']){
+          <p class="error">Username is required!</p>
+          }
+          <!--  -->
+          @if(inputUsername?.errors?.['minlength']){
+          <p class="error">Username must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
 
-    <label for="pass"><b>Password:</b></label>
-    <input
-      type="password"
-      placeholder="*******"
-      name="pass"
-      id="pass"
-      ngModel
-      #inputPass="ngModel"
-      minlength="5"
-      required
-    />
+      <div class="inputCont">
+        <label for="email"><b>Email:</b></label>
+        <input
+          [class]="(
+            (inputEmail?.touched && inputEmail?.errors?.['required']) || 
+             (inputEmail?.touched && inputEmail?.errors?.['emailValidator']))
+             ? 'input-error': ''"
+          type="text"
+          placeholder="your.mail@gmail.com"
+          name="email"
+          id="email"
+          ngModel
+          #inputEmail="ngModel"
+          required
+          [appEmail]="domains"
+        />
 
-    <label for="rePass"><b>Repeat password:</b></label>
-    <input
-      type="password"
-      placeholder="*******"
-      name="rePass"
-      id="rePass"
-      ngModel
-      #inputRePass="ngModel"
-      minlength="5"
-      required
-    />
-  </div>
+        @if(inputEmail?.touched){
+        <div>
+          @if(inputEmail?.errors?.['required']){
+          <p class="error">Email is required!</p>
+          }
+          <!--  -->
+          @if(inputEmail?.errors?.['emailValidator']){
+          <p class="error">Email is not valid!</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="inputCont">
+        <label for="pass"><b>Password:</b></label>
+        <input
+          [class]="(
+          (inputPass?.touched && inputPass?.errors?.['required']) || 
+           (inputPass?.touched && inputPass?.errors?.['minlength']))
+           ? 'input-error': ''"
+          type="password"
+          placeholder="*******"
+          name="pass"
+          id="pass"
+          ngModel
+          #inputPass="ngModel"
+          minlength="5"
+          required
+        />
+
+        @if(inputPass?.touched){
+        <div>
+          @if(inputPass?.errors?.['required']){
+          <p class="error">Password is required!</p>
+          }
+          <!--  -->
+          @if(inputPass?.errors?.['minlength']){
+          <p class="error">Password must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="inputCont">
+        <label for="rePass"><b>Repeat password:</b></label>
+        <input
+          [class]="(
+          (inputRePass?.touched && inputRePass?.errors?.['required']) || 
+           (inputRePass?.touched && inputRePass?.errors?.['minlength']))
+           ? 'input-error': ''"
+          type="password"
+          placeholder="*******"
+          name="rePass"
+          id="rePass"
+          ngModel
+          #inputRePass="ngModel"
+          minlength="5"
+          required
+        />
+
+        @if(inputRePass?.touched){
+        <div>
+          @if(inputRePass?.errors?.['required']){
+          <p class="error">Password is required!</p>
+          }
+          <!--  -->
+          @if(inputRePass?.errors?.['minlength']){
+          <p class="error">Password must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
+    </div>
     <button [disabled]="form.invalid" class="registerbtn">Register</button>
   </div>
   <div class="login">
