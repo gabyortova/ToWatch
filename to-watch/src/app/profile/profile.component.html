@@ -1,4 +1,4 @@
-<div class="profile-container">
+<div class="big-container profile-container">
     <h1>Profile</h1>
   @if(!isEditMode) {
   <div class="profile-details">
@@ -8,7 +8,7 @@
   </div>
   } @else {
   <form #form="ngForm" (ngSubmit)="handleSaveProfile(form)">
-    <div class="form-container">
+    <div >
       <div class="inputCont">
         <label for="username"><b>Username:</b></label>
         <input
@@ -32,9 +32,9 @@
           [(ngModel)]="profileDetails.email"
         />
       </div>
-      <div class="btn-wrapper">
-        <button type="button" (click)="onCancel($event, form)">Cancel</button>
-        <button [disabled]="form.invalid">Save</button>
+      <div class="buttons">
+        <button type="button" class="button" (click)="onCancel($event, form)">Cancel</button>
+        <button [disabled]="form.invalid" class="button">Save</button>
       </div>
     </div>
   </form>

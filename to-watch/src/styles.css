@@ -17,6 +17,7 @@ p {
 }
 .buttons {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .buttons .button {
@@ -60,8 +61,7 @@ a {
 }
 
 .form-container,
-.details-container,
-.profile-container {
+.big-container {
   padding: 20px 10%;
   display: flex;
   flex-direction: column;

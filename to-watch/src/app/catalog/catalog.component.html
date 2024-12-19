@@ -3,8 +3,10 @@
   <div class="card">
     <img src="{{ video.imgUrl }}" />
     <h2>{{ video.title }}</h2>
-    <a routerLink="{{ video.videoUrl }}" target="_blank">Watch Video</a>
-    <a routerLink="/catalog/{{ video._id }}">Details</a>
+    <div class="buttons">
+      <a href="{{ video.videoUrl }}" class="button" target="_blank">Watch Video</a>
+      <a routerLink="/catalog/{{ video._id }}" class="button">Details</a>
+    </div>
   </div>
   }
 </div>
